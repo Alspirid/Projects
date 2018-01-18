@@ -53,12 +53,13 @@ class TweetCompose {
         <select name='tweet[mentioned_user_ids][]'>
           ${userOptions}
         </select>
+
         <button class='remove-mentioned-user'>Remove</button>
       </div>`;
 
-    return $(html);
+    return $(html); 
   }
-// commment
+
   removeMentionedUser(event) {
     event.preventDefault();
     $(event.currentTarget).parent().remove();
@@ -67,7 +68,7 @@ class TweetCompose {
   submit(event) {
     event.preventDefault();
     const data = this.$el.serializeJSON();
-
+    
     this.$el.find(':input').prop('disabled', true);
 
     APIUtil.createTweet(data).then(tweet => this.handleSuccess(tweet));

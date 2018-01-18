@@ -119,12 +119,14 @@ module.exports = APIUtil;
 const APIUtil = __webpack_require__(0);
 
 class FollowToggle {
-  constructor(el,options) {
+  constructor(el, options) {
     this.$el = $(el);
-    this.userId = this.$el.data('user_id') || options.userId;
-    this.followState = (this.$el.data('initial-follow-state') || options.followState);
+    this.userId = this.$el.data('user-id') || options.userId;
+    this.followState = (this.$el.data('initial-follow-state') ||
+                        options.followState);
     this.render();
-    this.$el.on('click',this.handleClick.bind(this));
+
+    this.$el.on('click', this.handleClick.bind(this));
   }
 
   handleClick(event) {
@@ -150,7 +152,7 @@ class FollowToggle {
   }
 
   render() {
-    switch (this.followState) {
+    switch(this.followState){
       case 'followed':
         this.$el.prop('disabled', false);
         this.$el.html('Unfollow!');
@@ -256,9 +258,9 @@ class InfiniteTweets {
           @${tweet.user.username}
         </a>
       </h3>
-
+      
       <p>${tweet.content}</p>
-
+      
       <ul>Mentions
         ${mentions}
       </ul>
@@ -17478,12 +17480,13 @@ class TweetCompose {
         <select name='tweet[mentioned_user_ids][]'>
           ${userOptions}
         </select>
+
         <button class='remove-mentioned-user'>Remove</button>
       </div>`;
 
-    return $(html);
+    return $(html); 
   }
-// commment
+
   removeMentionedUser(event) {
     event.preventDefault();
     $(event.currentTarget).parent().remove();
@@ -17492,7 +17495,7 @@ class TweetCompose {
   submit(event) {
     event.preventDefault();
     const data = this.$el.serializeJSON();
-
+    
     this.$el.find(':input').prop('disabled', true);
 
     APIUtil.createTweet(data).then(tweet => this.handleSuccess(tweet));
@@ -17532,19 +17535,19 @@ class UsersSearch {
     this.$ul.empty();
 
     for (let i = 0; i < users.length; i++) {
-      const user = users[i];
+      let user = users[i];
 
       let $a = $('<a></a>');
       $a.text(`@${user.username}`);
       $a.attr('href', `/users/${user.id}`);
 
-      const $followToggle = $('<button></button>');
+      let $followToggle = $('<button></button>');
       new FollowToggle($followToggle, {
         userId: user.id,
         followState: user.followed ? 'followed' : 'unfollowed'
       });
 
-      const $li = $('<li></li>');
+      let $li = $('<li></li>');
       $li.append($a);
       $li.append($followToggle);
 

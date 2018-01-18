@@ -59,9 +59,9 @@ class InfiniteTweets {
           @${tweet.user.username}
         </a>
       </h3>
-
+      
       <p>${tweet.content}</p>
-
+      
       <ul>Mentions
         ${mentions}
       </ul>
