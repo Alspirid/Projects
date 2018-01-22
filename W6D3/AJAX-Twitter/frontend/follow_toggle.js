@@ -28,12 +28,14 @@ class FollowToggle {
   handleClick(event) {
     event.preventDefault();
     const followToggle = this;
+    
     if (this.followState === 'followed') {
       this.followState = 'unfollowing';
       this.render();
       APIUtil.unfollowUser(this.userId).then(()=>{
         followToggle.followState = 'unfollowed';
       });
+      
     } else {
       this.followState = 'following';
       this.render();
@@ -53,4 +55,4 @@ class FollowToggle {
   
   
   
-module .exports = FollowToggle;
+module.exports = FollowToggle;

@@ -5,5 +5,4 @@ $(function () {
       new FollowToggle(ele);
     });
   }
-
 );
